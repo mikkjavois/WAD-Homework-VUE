@@ -9,10 +9,13 @@ export default createStore({
   },
   mutations: {
     SetPosts:   (state, posts) => state.posts = posts,
-    LikePost:   (state, id) => state.posts.find(p => p.id === id).likeCount++,
+    LikePost:   (state, id) => {
+      const post = state.posts.find(p => p.id === id);
+      if (post) post.likeCount++;
+    },
     UnlikePost: (state, id) => {
       const post = state.posts.find(p => p.id === id);
-      if (post.likeCount >= 0) {
+      if (post && post.likeCount >= 0) {
         post.likeCount--;
       }
     },
