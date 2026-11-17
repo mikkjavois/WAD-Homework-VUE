@@ -6,18 +6,15 @@
       :postData="post" 
     />
   </div>
-  <Footer></Footer>
 </template>
 
 <script>
 import Post from '@/components/Post.vue';
-import Footer from '@/components/Footer.vue';
 
 export default {
   name: 'HomeView',
   components: {
-    Post,
-    Footer
+    Post
   },
   computed: {
     posts() {
