@@ -1,8 +1,5 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/signup">Sign Up</router-link>
-  </nav>
+  <Header />
   <main class="main-content">
     <router-view />
   </main>
@@ -10,10 +7,11 @@
 </template>
 
 <script>
+import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 
 export default {
-  components: { Footer }
+  components: { Header, Footer }
 };
 </script>
 
