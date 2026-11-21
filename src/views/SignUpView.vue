@@ -23,9 +23,12 @@
                 />
             </div>
 
-            <p v-if="errors.length > 0" class="error-message">
-                The password is not valid - {{ errors.join(', ') }}
-            </p>
+            <div v-if="errors.length > 0" class="error-message" role="alert">
+                <p>The password is not valid:</p>
+                <ul>
+                    <li v-for="error in errors" :key="error">{{ error }}</li>
+                </ul>
+            </div>
 
             <button type="submit" class="signup-button">Signup</button>
         </form>
@@ -48,27 +51,27 @@ export default {
             const pwd = this.password;
 
             if (pwd.length < 8 || pwd.length >= 15) {
-                unmetRules.push('The password should be at least 8 chars and less than 15 chars');
+                unmetRules.push('The password should be at least 8 characters and less than 15 characters');
             }
 
             if (!/[A-Z]/.test(pwd)) {
                 unmetRules.push('The password should contain at least one uppercase letter');
             }
 
-            if ((pwd.match(/[a-z]/g) || []).length < 2) {
-                unmetRules.push('It should include at least two lowercase alphabet characters');
+            if (!/[0-9]/.test(pwd)) {
+                unmetRules.push('The password should contain at least one numeric value');
             }
-            
+
             if ((pwd.match(/[a-z]/g) || []).length < 2) {
-                unmetRules.push('It should include at least two lowercase alphabet characters');
+                unmetRules.push('The password should include at least two lowercase alphabet characters');
             }
 
             if (!/^[A-Z]/.test(pwd)) {
-                unmetRules.push('It should start with an uppercase alphabet');
+                unmetRules.push('The password should start with an uppercase alphabet');
             }
             
             if (!pwd.includes('_')) {
-                unmetRules.push('It should include the character "_"');
+                unmetRules.push('The password should include the character "_"');
             }
 
             this.errors = unmetRules;
